@@ -28,7 +28,7 @@
 						<c:if test="${not empty message}">
 							<div class="alert alert-${alert}">${message}</div>
 						</c:if>
-						<form:form class="form-horizontal" role="form" id="formSubmit" modelAttribute="model">
+						<form:form class="form-horizontal" role="form" id="formSubmit" modelAttribute="model" enctype="multipart/form-data">
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Tên</label>
 								<div class="col-sm-9">
@@ -39,8 +39,10 @@
 								<label class="col-sm-3 control-label no-padding-right"
 									for="form-field-1">Hình ảnh</label>
 								<div class="col-sm-9">
-									<input type="file" class="col-xs-10 col-sm-5" id="thumbnail"
-										name="thumbnail" />
+									<img id='watchimg' width="150" height="150" alt="150x150" src="<c:url value='${model.thumbnail }' />">
+										<div class="text">
+											<input type="file" class="col-xs-10 col-sm-5" id="file" name="file" />
+										</div>
 								</div>
 							</div>
 							<div class="form-group">
@@ -62,6 +64,12 @@
 								  </div>
 							</div>
 							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Size</label>
+								<div class="col-sm-9">
+									<form:input type="number" path="size" cssClass="col-xs-10 col-sm-5" />
+								</div>
+							</div>
+							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Giá gốc</label>
 								<div class="col-sm-9">
 									<form:input path="price" cssClass="col-xs-10 col-sm-5" />
@@ -70,11 +78,30 @@
 							<div class="form-group">
 								<label for="shortDescription" class="col-sm-3 control-label no-padding-right">Giảm giá</label>
 								<div class="col-sm-9">
-									<form:textarea path="discount" rows="5" cols="10" cssClass="form-control" />
+									<form:input path="discount" cssClass="col-xs-10 col-sm-5" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Bảo hành</label>
+								<div class="col-sm-9">
+									<form:input type="number" path="warranty" cssClass="col-xs-10 col-sm-5" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Chống nước</label>
+								<div class="col-sm-9">
+									<form:input type="number" path="waterproof" cssClass="col-xs-10 col-sm-5" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Tồn kho</label>
+								<div class="col-sm-9">
+									<form:input type="number" path="stock" cssClass="col-xs-10 col-sm-5" />
 								</div>
 							</div>
 							
 							<form:hidden path="id" id="newId" />
+							<form:hidden path="thumbnail" id="thumbnail" />
 							<div class="clearfix form-actions">
 								<div class="col-md-offset-3 col-md-9">
 									<c:if test="${not empty model.id}">
@@ -105,7 +132,32 @@
 	</div>
 
 	<script>
-		$('#btnAddOrUpdateNew').click(function(e) {
+	
+		 function saveMedia(dataFile) {
+	         console.log("form data " + dataFile);
+	         $.ajax({
+	             url : "http://localhost:8080/watch-mvc/quan-tri/dong-ho/chinh-sua",
+	             data : dataFile,
+	             processData : false,
+	             contentType : false,
+	             type : 'POST',
+	             success : function(data) {
+	            	 $('#watchimg').attr("src", "/"+window.location.pathname.split("/")[1]+data);;
+	                 $('#thumbnail').val(data);
+	             },
+	             error : function(err) {
+	                 console.log(err);
+	             }
+	         });
+	    }
+		 
+		$('#file').change(function() {
+			var formData = new FormData();
+	        formData.append('file', $('#file')[0].files[0]);
+			saveMedia(formData);
+		});
+		
+ 		$('#btnAddOrUpdateNew').click(function(e) {
 			e.preventDefault();
 			var data = {};
 			var formData = $('#formSubmit').serializeArray();
@@ -113,12 +165,13 @@
 				data["" + v.name + ""] = v.value;
 			});
 			var id = $('#newId').val();
+			var thumbnail = $('#thumbnail').val();
 			if (id == "") {
 				addNew(data);
 			} else {
 				updateNew(data);
 			}
-		});
+		}); 
 
 		function addNew(data) {
 			$.ajax({
@@ -137,7 +190,7 @@
 					});
 		}
 
-		function updateNew(data) {
+		function updateNew(data, id) {
 			$.ajax({
 				url : '${watchAPI}',
 				type : 'PUT',
@@ -149,7 +202,7 @@
 							+ "&message=update_success";
 				},
 				error : function(error) {
-					window.location.href = "${editwatchURL}?id=" + result.id
+					window.location.href = "${editwatchURL}?id=" + id
 							+ "&message=error_system";
 				}
 			});

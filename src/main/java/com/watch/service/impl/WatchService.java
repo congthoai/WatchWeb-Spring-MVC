@@ -93,7 +93,7 @@ public class WatchService implements IWatchService {
 	}
 
 	@Override
-	public List<WatchDTO> findByFilter(String brandId, String typeId, String gender, String beginPrice, String duePrice, int page, int limit) {
+	public List<WatchDTO> findByFilter(Long brandId, Long typeId, String gender, Long beginPrice, Long duePrice, int page, int limit) {
 		List<WatchEntity> entities = watchRepository.findByFilter(brandId, typeId, gender, beginPrice, duePrice, (page-1)*limit, limit);
 		List<WatchDTO> models = new ArrayList<>();
 		for(WatchEntity item: entities) {
@@ -103,6 +103,10 @@ public class WatchService implements IWatchService {
 		System.out.println("SIZEZZZZZZZZMODEL" +models.size());
 		return models;
 	}
-	
+
+	@Override
+	public WatchDTO findTopByOrderByIdDesc() {
+		return watchConverter.toDto(watchRepository.findTopByOrderByIdDesc());
+	}
 
 }

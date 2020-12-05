@@ -46,7 +46,6 @@ public class WatchConverter {
 	}
 	
 	public WatchEntity toEntity(WatchEntity result, WatchDTO dto) {
-		result.setBuyed(dto.getBuyed());
 		result.setDiscount(dto.getDiscount());
 		result.setGender(dto.getGender());
 		result.setMaterial(dto.getMaterial());
@@ -55,7 +54,6 @@ public class WatchConverter {
 		result.setSize(dto.getSize());
 		result.setStock(dto.getStock());
 		result.setThumbnail(dto.getThumbnail());
-		result.setView(dto.getView());
 		result.setWarranty(dto.getWarranty());
 		result.setWaterproof(dto.getWaterproof());
 		return result;

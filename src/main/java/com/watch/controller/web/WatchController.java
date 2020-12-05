@@ -3,8 +3,6 @@ package com.watch.controller.web;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,34 +18,34 @@ import com.watch.service.IWatchService;
 public class WatchController {
 	
 	@Autowired
-	IWatchService watchService;
+	IWatchService brandId;
 	@Autowired
 	IBrandService brandService;
 	@Autowired
 	ITypeService typeService;
+	@Autowired
+	IWatchService watchService;
 	
 	@RequestMapping(value = "/trang-chu/dong-ho/danh-sach", method = RequestMethod.GET)
-	public ModelAndView showList(@RequestParam(value = "brandId", required = false) String brandId, 
-			@RequestParam(value="typeId", required = false) String typeId, 
+	public ModelAndView showList(@RequestParam(value = "brandId", required = false) Long brandId, 
+			@RequestParam(value="typeId", required = false) Long typeId, 
 			@RequestParam(value="gender", required = false) String gender, 
-			@RequestParam(value="beginPrice", required = false) String beginPrice, 
-			@RequestParam(value="duePrice", required = false) String duePrice,
-			@RequestParam("page") int page) {
+			@RequestParam(value="beginPrice", required = false) Long beginPrice, 
+			@RequestParam(value="duePrice", required = false) Long duePrice,
+			@RequestParam(value="page", required = false) Integer page) {
 		ModelAndView mav = new ModelAndView("web/watch/list");
 		WatchDTO model = new WatchDTO();
 		int limit = 8;
+		if(page == null) {
+			page = 1;
+		}
 		model.setPage(page);
 		model.setLimit(limit);
 		model.setTotalItem(watchService.findByFilter(brandId, typeId, gender, beginPrice, duePrice, 1, 999999).size());
 		model.setTotalPage((int)Math.ceil((double)model.getTotalItem() / limit));
 		model.setListResult(watchService.findByFilter(brandId, typeId, gender, beginPrice, duePrice, page, limit));
-		
-		if(brandId != "" ) {
-			model.setBrandId(Long.parseLong(brandId));
-		}
-		if(typeId != "") {
-			model.setTypeId(Long.parseLong(typeId));
-		}
+		model.setBrandId(brandId);
+		model.setTypeId(typeId);
 		
 		model.setGender(gender);
 		mav.addObject("brands", brandService.findAllMapIdName());

@@ -111,7 +111,7 @@
 	    if (id == "") {
 	    	addNew(data);
 	    } else {
-	    	updateNew(data);
+	    	updateNew(data, id);
 	    }
 	});
 	
@@ -131,7 +131,7 @@
         });
 	}
 	
-	function updateNew(data) {
+	function updateNew(data, id) {
 		$.ajax({
             url: '${newAPI}',
             type: 'PUT',
@@ -142,7 +142,7 @@
             	window.location.href = "${editNewURL}?id="+result.id+"&message=update_success";
             },
             error: function (error) {
-            	window.location.href = "${editNewURL}?id="+result.id+"&message=error_system";
+            	window.location.href = "${editNewURL}?id="+id+"&message=error_system";
             }
         });
 	}

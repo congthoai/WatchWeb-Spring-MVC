@@ -8,6 +8,8 @@ public class UserDTO extends AbstractDTO<UserDTO> {
 	private String password;
 	private String fullName;
 	private Integer status;
+	private String email;
+	private String phone;
 	private List<RoleDTO> roles;
 	
 	public String getUserName() {
@@ -40,6 +42,19 @@ public class UserDTO extends AbstractDTO<UserDTO> {
 	public void setRoles(List<RoleDTO> roles) {
 		this.roles = roles;
 	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	
 	
 	
 

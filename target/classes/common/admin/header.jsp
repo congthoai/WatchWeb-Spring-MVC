@@ -7,7 +7,13 @@
 	<div class="navbar-container ace-save-state" id="navbar-container">
 		<div class="navbar-header pull-left">
 			<a href="<c:url value='/quan-tri/trang-chu'/>" class="navbar-brand">
-				<small> <i class="fa fa-leaf"></i> Trang quản trị
+				<small> <i class="fa fa-home"></i> Trang quản trị
+			</small>
+			</a>
+		</div>
+		<div class="navbar-header pull-left">
+			<a href="<c:url value='/trang-chu'/>" class="navbar-brand">
+				<small> <i class="fa fa-leaf"></i> Trang người dùng
 			</small>
 			</a>
 		</div>

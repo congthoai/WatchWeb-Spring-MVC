@@ -42,7 +42,7 @@
 			<div class="title"
 				style="height: 50px; font-weight: bold; padding: 13px">
 				<a style="color: gray; text-decoration: none;"
-					href='http://localhost/dongho_1'>Trang Chủ </a> / Đồng Hồ
+					href="<c:url value='/#' />">Trang Chủ </a> / Đồng Hồ
 				<?php if(isset($_GET['gender']) && $_GET['gender']!=NULL) ECHO $_GET['gender'];?>
 
 				<select id="sort" name="sort" style="font-size: 1.3em; float: right">

@@ -23,6 +23,8 @@ public class UserConverter {
 		result.setUserName(entity.getUserName());
 		result.setFullName(entity.getFullName());
 		result.setPassword(entity.getPassword());
+		result.setPhone(entity.getPhone());
+		result.setEmail(entity.getEmail());
 		
 		for (RoleEntity role : entity.getRoles()) {
 			roles.add(roleConverter.toDto(role));
@@ -37,6 +39,8 @@ public class UserConverter {
 		result.setFullName(dto.getFullName());
 		result.setUserName(dto.getUserName());
 		result.setPassword(dto.getPassword());
+		result.setPhone(dto.getPhone());
+		result.setEmail(dto.getEmail());
 		return result;
 	}
 	
@@ -44,6 +48,8 @@ public class UserConverter {
 		result.setFullName(dto.getFullName());
 		result.setUserName(dto.getUserName());
 		result.setPassword(dto.getPassword());
+		result.setPhone(dto.getPhone());
+		result.setEmail(dto.getEmail());
 		return result;
 	}
 	

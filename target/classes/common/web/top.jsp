@@ -7,7 +7,7 @@
 
 <div class="top">
 	<div class="logo">
-		<a href="<c:url value='#'/>" title="UIT"> <img width="120"
+		<a href="<c:url value='/#'/>" title="UIT"> <img width="120"
 			height="40" src="<c:url value='/resources/images/UiTlogo.png'/>"
 			alt="linklogo">
 		</a>
@@ -17,7 +17,7 @@
 		<ul>
 			<c:forEach items="${menu}" var="item">
 				<li class="ThuongHieu">
-					<a href="<c:url value='/${item.getValue().getLink()}'/>" title="${item.getValue().getName()}">${item.getValue().getName()}</a>
+					<a href="<c:url value='${item.getValue().getLink()}'/>" title="${item.getValue().getName()}">${item.getValue().getName()}</a>
 					<c:if test="${item.getValue().getSubMenu() != null}">
 						<div class="ThuongHieu-dropdown">
 							<c:forEach items="${item.getValue().getSubMenu()}" var="subMenu">

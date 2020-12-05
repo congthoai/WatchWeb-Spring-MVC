@@ -1,5 +1,8 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/watch/controller/admin/WatchController.java=UTF-8
+encoding//src/main/java/com/watch/controller/web/WatchController.java=UTF-8
 encoding//src/main/java/com/watch/service/impl/HomeServiceImpl.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/admin/type/edit.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/admin/type/list.jsp=UTF-8
 encoding//src/main/webapp/common/web/top.jsp=UTF-8
+encoding/<project>=UTF-8

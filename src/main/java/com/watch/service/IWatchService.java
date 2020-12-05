@@ -11,7 +11,8 @@ public interface IWatchService {
 	List<WatchDTO> findAllByGender(String gender);
 	int getTotalItem();
 	WatchDTO findById(long id);
+	WatchDTO findTopByOrderByIdDesc();
 	WatchDTO save(WatchDTO dto);
 	void delete(long[] ids);
-	List<WatchDTO> findByFilter(String brandId, String typeId, String gender, String beginPrice, String duePrice, int page, int limit);
+	List<WatchDTO> findByFilter(Long brandId, Long typeId, String gender, Long beginPrice, Long duePrice, int page, int limit);
 }
