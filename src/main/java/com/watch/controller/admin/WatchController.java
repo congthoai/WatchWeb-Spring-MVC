@@ -20,6 +20,7 @@ import com.watch.dto.WatchDTO;
 import com.watch.service.IBrandService;
 import com.watch.service.ITypeService;
 import com.watch.service.IWatchService;
+import com.watch.util.MediaFileUtil;
 import com.watch.util.MessageUtil;
 
 @Controller(value = "watchControllerOfAdmin")
@@ -33,6 +34,8 @@ public class WatchController {
 	IBrandService brandService;
 	@Autowired
 	ITypeService typeService;
+	@Autowired
+	MediaFileUtil mediaUtil;
 	
 	@RequestMapping(value = "/quan-tri/dong-ho/danh-sach", method = RequestMethod.GET)
 	public ModelAndView showList(HttpServletRequest request, @RequestParam("page") int page, @RequestParam("limit") int limit) {
@@ -77,21 +80,13 @@ public class WatchController {
 	
 	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "/quan-tri/dong-ho/chinh-sua", method = RequestMethod.POST)
-	public @ResponseBody String uploadMeida(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
+	public @ResponseBody String uploadMeida2(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
 		try {
-			String thumbnailName = file.getOriginalFilename();
-			String thumbnailPath = request.getRealPath("resources/images/watch");
-			if(thumbnailName.equals("")) {
-				System.out.println("File NULL");
-			}else {
-				file.transferTo(new File(thumbnailPath+"/"+thumbnailName));		
-				System.out.println("Upload file thành công!"+ thumbnailName);
-				return "/resources/images/watch/"+thumbnailName;
-			}		
+			String rootFilePath = request.getRealPath("resources/images/watch");
+			return mediaUtil.uploadMediFile(file, rootFilePath);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			System.out.println("Upload file thất bại!");
 		}
-		return "error_uploadfile";
+		return null;
 	}
 }

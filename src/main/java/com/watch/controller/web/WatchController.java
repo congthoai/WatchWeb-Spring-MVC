@@ -32,18 +32,15 @@ public class WatchController {
 			@RequestParam(value="gender", required = false) String gender, 
 			@RequestParam(value="beginPrice", required = false) Long beginPrice, 
 			@RequestParam(value="duePrice", required = false) Long duePrice,
-			@RequestParam(value="page", required = false) Integer page) {
+			@RequestParam(value="page", required = false) Integer page,
+			@RequestParam(value="limit", required = false) Integer limit) {
 		ModelAndView mav = new ModelAndView("web/watch/list");
 		WatchDTO model = new WatchDTO();
-		int limit = 8;
-		if(page == null) {
-			page = 1;
-		}
-		model.setPage(page);
-		model.setLimit(limit);
+		model.setPage(page != null ? page : 1);
+		model.setLimit(limit != null ? limit : 8);
 		model.setTotalItem(watchService.findByFilter(brandId, typeId, gender, beginPrice, duePrice, 1, 999999).size());
-		model.setTotalPage((int)Math.ceil((double)model.getTotalItem() / limit));
-		model.setListResult(watchService.findByFilter(brandId, typeId, gender, beginPrice, duePrice, page, limit));
+		model.setTotalPage((int)Math.ceil((double)model.getTotalItem() / model.getLimit()));
+		model.setListResult(watchService.findByFilter(brandId, typeId, gender, beginPrice, duePrice, model.getPage(), model.getLimit()));
 		model.setBrandId(brandId);
 		model.setTypeId(typeId);
 		

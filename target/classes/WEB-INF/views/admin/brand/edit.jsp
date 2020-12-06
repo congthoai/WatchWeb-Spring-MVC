@@ -131,8 +131,7 @@
 							+ "&message=update_success";
 				},
 				error : function(error) {
-					window.location.href = "${editbrandURL}?id=" + result.id
-							+ "&message=error_system";
+					window.location.href = "${brandURL}?page=1&limit=2&message=error_system";
 				}
 			});
 		}

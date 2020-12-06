@@ -142,8 +142,10 @@
 	             contentType : false,
 	             type : 'POST',
 	             success : function(data) {
-	            	 $('#watchimg').attr("src", "/"+window.location.pathname.split("/")[1]+data);;
-	                 $('#thumbnail').val(data);
+	            	 if(data != null) {
+		            	 $('#watchimg').attr("src", "/"+window.location.pathname.split("/")[1]+"/resources/images/watch/"+data);;
+		                 $('#thumbnail').val("/resources/images/watch/" + data); 
+	            	 }
 	             },
 	             error : function(err) {
 	                 console.log(err);
@@ -190,7 +192,7 @@
 					});
 		}
 
-		function updateNew(data, id) {
+		function updateNew(data) {
 			$.ajax({
 				url : '${watchAPI}',
 				type : 'PUT',
@@ -202,8 +204,7 @@
 							+ "&message=update_success";
 				},
 				error : function(error) {
-					window.location.href = "${editwatchURL}?id=" + id
-							+ "&message=error_system";
+					window.location.href = "${watchURL}?page=1&limit=2&message=error_system";
 				}
 			});
 		}

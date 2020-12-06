@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.watch.service.IBrandService;
 import com.watch.service.IHomeService;
-import com.watch.service.impl.BrandService;
-import com.watch.service.impl.WatchService;
+import com.watch.service.ISlideService;
+import com.watch.service.IWatchService;
 
 @Controller(value = "homeControllerOfWeb")
 public class HomeController {
@@ -23,10 +24,13 @@ public class HomeController {
 	private IHomeService homeService;
 	
 	@Autowired
-	private BrandService brandService;
+	private IBrandService brandService;
 	
 	@Autowired
-	private WatchService watchService;
+	private IWatchService watchService;
+	
+	@Autowired
+	private ISlideService slideService;
 	
 	@RequestMapping(value = "/trang-chu", method = RequestMethod.GET)
 	public ModelAndView homePage() {
@@ -35,6 +39,7 @@ public class HomeController {
 		mav.addObject("brands", brandService.findAll());
 		mav.addObject("watchMan", watchService.findAllByGender("Nam"));
 		mav.addObject("watchLady", watchService.findAllByGender("Nu"));
+		mav.addObject("banners", slideService.findTop5ByOderBySortAsc());
 		return mav;
 	}
 	
