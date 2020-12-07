@@ -3,34 +3,19 @@
 	pageEncoding="UTF-8"%>
 <c:url var="newAPI" value="/api/new" />
 <c:url var="newURL" value="/quan-tri/bai-viet/danh-sach" />
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<c:url var="addCartURL" value="/them-gio-hang" />
+
 <html>
-
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Đồng hồ</title>
-
-<link rel="stylesheet"
-	href="<c:url value='/template/web/css/style_2.css' />" type="text/css">
-<link rel="stylesheet"
-	href="<c:url value='/template/web/css/style-grid-product_2.css'/>"
-	type="text/css">
-<link rel="stylesheet"
-	href="<c:url value='/template/web/font/fontawesome/css/all.min.css'/>"
-	type="text/css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script language="javascript"
-	src="<c:url value='/template/web/js/jquery-3.3.1.min.js'/>"></script>
-
-<script
-	src="<c:url value='/template/admin/paging/jquery.twbsPagination.js' />"></script>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Đồng hồ</title>
+	
+	<content tag="css">
+		<link rel="stylesheet" href="<c:url value='/template/web/css/style_2.css' />" type="text/css">
+		<link rel="stylesheet" href="<c:url value='/template/web/css/style-grid-product_2.css'/>" type="text/css">
+	</content>
+	
 </head>
 
 <body>
@@ -113,10 +98,18 @@
 			});
 		});
 		
-		$("#productFilter").click(function(){
-			$("#page").val(1);
-			$("#formFilter").submit();
-		})
+		$(".p-add").click(function(){
+			var isLogin = $('#isLogin').val();
+			if(isLogin == "true"){
+				var id_add_cart = $(this).val();
+		        //alert(id_add);
+		    	$.get("${addCartURL}/"+id_add_cart,function(data,status){
+		        	$("#qty_cart_ajax").html(data);
+		    	});
+			}
+			else
+				alert("Bạn cần đăng nhập để mua hàng!");
+		});
 	</script>
 
 </body>

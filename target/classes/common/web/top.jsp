@@ -60,9 +60,9 @@
 				</div></li>
 
 			<li><a class="menuicon"
-				href="<c:url value='/checkout'/>"> <i
+				href="<c:url value='/chi-tiet-gio-hang'/>"> <i
 					id="view_cart" class="fas fa-shopping-bag"><sup
-						id="qty_cart_ajax" style="font-size: 19px; color: #FFF999">${totalQuantityCart}</sup></i>
+						id="qty_cart_ajax" style="font-size: 19px; color: #FFF999">${totalQuantityCart > 0 ? totalQuantityCart : '' }</sup></i>
 			</a></li>
 
 		</ul>

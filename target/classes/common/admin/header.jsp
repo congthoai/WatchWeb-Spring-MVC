@@ -12,7 +12,7 @@
 			</a>
 		</div>
 		<div class="navbar-header pull-left">
-			<a href="<c:url value='/trang-chu'/>" class="navbar-brand">
+			<a href="<c:url value='/trang-chu'/>" class="navbar-brand" target="_blank">
 				<small> <i class="fa fa-leaf"></i> Trang người dùng
 			</small>
 			</a>

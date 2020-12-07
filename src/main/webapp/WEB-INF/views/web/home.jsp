@@ -9,14 +9,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
 	<title>Trang chủ</title>
 	
-	<link rel="stylesheet" href="<c:url value='/template/web/css/style.css' />" type="text/css">
-	<link rel="stylesheet" href="<c:url value='/template/web/css/style-grid-product.css'/>" type="text/css">
-	<link rel="stylesheet" href="<c:url value='/template/web/font/fontawesome/css/all.min.css'/>" type="text/css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	<script language="javascript" src="<c:url value='/template/web/js/jquery-3.3.1.min.js'/>"></script>
+	<content tag="css">
+		<link rel="stylesheet" href="<c:url value='/template/web/css/style.css' />" type="text/css">
+		<link rel="stylesheet" href="<c:url value='/template/web/css/style-grid-product.css'/>" type="text/css">
+	</content>
 </head>
 
 <body>
@@ -36,7 +32,7 @@
 							<div class="p-name">${manWatch.name}</div>
 							<div class="p-final-price">${manWatch.price-manWatch.discount}</div>
 							<div class="p-price">${manWatch.price}</div>
-							<button class="p-add" value="1">
+							<button class="p-add" value="${manWatch.id}">
 								<i class="fas fa-cart-plus"></i>
 							</button>
 						</div>
@@ -68,7 +64,7 @@
 							<div class="p-name">${ladyWatch.name}</div>
 							<div class="p-final-price">${ladyWatch.price-ladyWatch.discount}</div>
 							<div class="p-price">${ladyWatch.price}</div>
-							<button class="p-add" value="1">
+							<button class="p-add" value="${ladyWatch.id}">
 								<i class="fas fa-cart-plus"></i>
 							</button>
 						</div>

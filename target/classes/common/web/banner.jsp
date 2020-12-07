@@ -3,7 +3,7 @@
 
 <div id="banner">
 
-	<div id="demo" class="carousel slide" data-ride="carousel" data-interval="4000">
+	<div id="demo" class="carousel slide" data-ride="carousel" data-interval="1000">
 
 
 		<ul class="carousel-indicators">

@@ -33,7 +33,7 @@ public class HomeServiceImpl implements IHomeService{
 	    	subMenuOfBrand.add(new MenuDTO(brand.getName(), brand.getCode(), "/trang-chu/dong-ho/danh-sach?brandId=" + brand.getId()));
 		}
 	    
-	    menus.put("4", new MenuDTO("THƯƠNG HIỆU", "thuong-hieu", "/trang-chu/dong-ho?thuong-hieu=", subMenuOfBrand));
+	    menus.put("4", new MenuDTO("THƯƠNG HIỆU", "thuong-hieu", "/trang-chu/dong-ho/danh-sach", subMenuOfBrand));
 		return menus;
 	}
 	

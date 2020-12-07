@@ -54,7 +54,7 @@
 	</div>
 
 
-	<input type="button" value="Lọc sản phẩm" class="redB" name="CapNhat" id="productFilter"
+	<input type="submit" value="Lọc sản phẩm" class="redB" name="CapNhat" id="productFilter"
 		style="padding: 7px 18px 8px 18px; float: right; margin-right: 17px;">
 </form:form>
 
