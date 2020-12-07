@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
+<c:url var="addCartURL" value="/them-gio-hang" />
 <html>
 
 <head>
@@ -81,6 +81,19 @@
 	</div>
 
 
-
+	<script>
+		$(".p-add").click(function(){
+			var isLogin = $('#isLogin').val();
+			if(isLogin == "true"){
+				var id_add_cart = $(this).val();
+		        //alert(id_add);
+		    	$.get("${addCartURL}/"+id_add_cart,function(data,status){
+		        	$("#qty_cart_ajax").html(data);
+		    	});
+			}
+			else
+				alert("Bạn cần đăng nhập để mua hàng!");
+		});
+	</script>
 </body>
 </html>

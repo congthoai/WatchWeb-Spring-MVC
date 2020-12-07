@@ -46,11 +46,13 @@
 					class="fas fa-user"></i></a>
 				<div id="user-dropdown">
 					<security:authorize access="isAnonymous()">
+						<input type="hidden" name="isLogin" id="isLogin" value=false>
 						<a href="<c:url value='/dang-nhap'/>">Đăng nhập</a>
 						<a href="<c:url value='/dang-ky'/>">Tạo tài khoản</a>
 					</security:authorize>
 
 					<security:authorize access="isAuthenticated()">
+						<input type="hidden" name="isLogin" id="isLogin" value=true>
 						<a href="#"><%=SecurityUtils.getPrincipal().getFullName()%></a>
 						<a href="<c:url value='/don-hang'/>" >Đơn hàng</a>
 						<a href="<c:url value='/thoat'/>" >Đăng xuất</a>
@@ -60,7 +62,7 @@
 			<li><a class="menuicon"
 				href="<c:url value='/checkout'/>"> <i
 					id="view_cart" class="fas fa-shopping-bag"><sup
-						id="qty_cart_ajax" style="font-size: 19px; color: #FFF999"></sup></i>
+						id="qty_cart_ajax" style="font-size: 19px; color: #FFF999">${totalQuantityCart}</sup></i>
 			</a></li>
 
 		</ul>

@@ -26,17 +26,7 @@ public class OrderEntity extends BaseEntity{
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "order_detail", joinColumns = @JoinColumn(name = "orderid"), 
 								  inverseJoinColumns = @JoinColumn(name = "watchid"))
-	private List<WatchEntity> watchs = new ArrayList<>();
-	
-	public List<WatchEntity> getWatchs() {
-		return watchs;
-	}
-
-	public void setWatchs(List<WatchEntity> watchs) {
-		this.watchs = watchs;
-	}
-
-	
+	private List<WatchEntity> watchs = new ArrayList<>();	
 
 	@Column(name = "total")
 	private long total;
@@ -111,6 +101,14 @@ public class OrderEntity extends BaseEntity{
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	
+	public List<WatchEntity> getWatchs() {
+		return watchs;
+	}
+
+	public void setWatchs(List<WatchEntity> watchs) {
+		this.watchs = watchs;
 	}
 	
 }
