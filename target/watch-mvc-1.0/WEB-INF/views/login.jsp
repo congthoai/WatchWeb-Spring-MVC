@@ -22,13 +22,17 @@
 							you Not authorize
 					</div>
 				</c:if>
+				<div class="alert alert-success">	
+						admin / 123456</br>
+						user / 123456
+				</div>
 				<form action="j_spring_security_check" id="formLogin" method="post">
 					<div class="form-group">
-						<input type="text" class="form-control" id="userName" name="j_username" placeholder="Tên đăng nhập">
+						<input type="text" class="form-control" value="admin" id="userName" name="j_username" placeholder="Tên đăng nhập">
 					</div>
 
 					<div class="form-group">
-						<input type="password" class="form-control" id="password" name="j_password" placeholder="Mật khẩu">
+						<input type="password" class="form-control" value="123456" id="password" name="j_password" placeholder="Mật khẩu">
 					</div>
 					<button type="submit" class="btn btn-primary" >Đăng nhập</button>
 				</form>

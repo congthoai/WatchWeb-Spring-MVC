@@ -19,11 +19,11 @@
 			</script>
 
 			<ul class="breadcrumb">
-				<li><i class="ace-icon fa fa-home home-icon"></i> <a href="#">Home</a>
-				</li>
+				<li><i class="ace-icon fa fa-home home-icon"></i> <a href="<c:url value='/quan-tri/trang-chu'/>">Trang quản trị</a>
+					</li>
 
-				<li><a href="#">Forms</a></li>
-				<li class="active">Form Elements</li>
+					<li><a href="${newURL}?page=1&limit=2">Danh sách</a></li>
+					<li class="active">Chi tiết</li>
 			</ul>
 			<!-- /.breadcrumb -->
 		</div>
@@ -111,7 +111,7 @@
 	    if (id == "") {
 	    	addNew(data);
 	    } else {
-	    	updateNew(data);
+	    	updateNew(data, id);
 	    }
 	});
 	
@@ -131,7 +131,7 @@
         });
 	}
 	
-	function updateNew(data) {
+	function updateNew(data, id) {
 		$.ajax({
             url: '${newAPI}',
             type: 'PUT',
@@ -142,7 +142,7 @@
             	window.location.href = "${editNewURL}?id="+result.id+"&message=update_success";
             },
             error: function (error) {
-            	window.location.href = "${editNewURL}?id="+result.id+"&message=error_system";
+            	window.location.href = "${editNewURL}?id="+id+"&message=error_system";
             }
         });
 	}

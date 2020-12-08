@@ -38,16 +38,16 @@
 	font-size: 1.3em;
 }
 
-
-.pagination {
+ .pagination {
     display: block;
-    padding: 5px 10px;
+    padding: 5px 2.5%;
     float: right;
     margin: auto;
     width: auto;
     text-align: center;
 }
 
+/*
 .pagination strong {
     background: #f3f3f3;
     border: 1px solid #c4c4c4;
@@ -79,7 +79,7 @@
     padding: 0 10px;
     text-decoration: none;
 }
-
+ */
 .footer{
     background: black;
     width: 99.7%;

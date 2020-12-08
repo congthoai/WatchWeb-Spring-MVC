@@ -8,9 +8,9 @@
 			<h2>Thông tin liên hệ</h2>
 			<ul>
 				<li>UIT</li>
-				<li>Email:đasadsadsd</li>
+				<li>Email:thoaidaica@gm.uit.edu.vn</li>
 
-				<li>SĐT:12321321321</li>
+				<li>SĐT:0983 583 845</li>
 			</ul>
 		</div>
 		<div class="footer-cot2">

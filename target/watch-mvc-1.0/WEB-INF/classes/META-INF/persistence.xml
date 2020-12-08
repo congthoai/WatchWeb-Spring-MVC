@@ -12,6 +12,12 @@
 		<class>com.watch.entity.BrandEntity</class>
 		<class>com.watch.entity.TypeEntity</class>
 		<class>com.watch.entity.WatchEntity</class>
+		<properties>
+
+			<property name="hibernate.show_sql" value="true" />
+			 <property name="logging.level.org.hibernate.SQL" value="debug"/>
+ 			<property name="logging.level.org.hibernate.type.descriptor.sql" value="trace"/>
+		</properties>
 
 	</persistence-unit>
 </persistence>

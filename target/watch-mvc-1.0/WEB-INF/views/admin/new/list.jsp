@@ -19,7 +19,7 @@
 						<ul class="breadcrumb">
 							<li>
 								<i class="ace-icon fa fa-home home-icon"></i>
-								<a href="#">Trang chủ</a>
+								<a href="<c:url value='/quan-tri/trang-chu'/>">Trang quản trị</a>
 							</li>
 						</ul>
 						<!-- /.breadcrumb -->
@@ -102,7 +102,7 @@
 			var currentPage = ${model.page};
 			$(function () {
 		        window.pagObj = $('#pagination').twbsPagination({
-		            totalPages: 100,
+		            totalPages: totalPages,
 		            visiblePages: 10,
 		            startPage: currentPage,
 		            onPageClick: function (event, page) {

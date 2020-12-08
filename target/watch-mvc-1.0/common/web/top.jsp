@@ -4,9 +4,10 @@
 <%@ page import="com.watch.util.SecurityUtils"%>
 
 
+
 <div class="top">
 	<div class="logo">
-		<a href="<c:url value='#'/>" title="UIT"> <img width="120"
+		<a href="<c:url value='/#'/>" title="UIT"> <img width="120"
 			height="40" src="<c:url value='/resources/images/UiTlogo.png'/>"
 			alt="linklogo">
 		</a>
@@ -14,24 +15,18 @@
 
 	<div class="menu">
 		<ul>
-			<li><a href="<c:url value='/trang-chu'/>" title="Trang chủ" class="TrangChu">TRANG
-					CHỦ</a></li>
-			<li><a
-				href="http://localhost/dongho_1/views/product.php?gender=Nam"
-				title="Đồng hồ nam">ĐỒNG HỒ NAM</a></li>
-			<li><a
-				href="http://localhost/dongho_1/views/product.php?gender=Nữ"
-				title="Đồng hồ nữ">ĐỒNG HỒ NỮ</a></li>
-			<li class="ThuongHieu"><a href="#" title="Phụ kiện">THƯƠNG
-					HIỆU</a>
-				<div class="ThuongHieu-dropdown">
-					<a href="http://localhost/dongho_1/views/product.php?brand=1">Seiko</a>
-					<a href="http://localhost/dongho_1/views/product.php?brand=2">DanielWellington</a>
-					<a href="http://localhost/dongho_1/views/product.php?brand=3">Casio</a>
-					<a href="http://localhost/dongho_1/views/product.php?brand=4">Q&amp;Q</a>
-				</div></li>
-			<li><a href="#" title="Tin tức">TIN TỨC</a></li>
-			<li><a href="#" title="Liên hệ">LIÊN HỆ</a></li>
+			<c:forEach items="${menu}" var="item">
+				<li class="ThuongHieu">
+					<a href="<c:url value='${item.getValue().getLink()}'/>" title="${item.getValue().getName()}">${item.getValue().getName()}</a>
+					<c:if test="${item.getValue().getSubMenu() != null}">
+						<div class="ThuongHieu-dropdown">
+							<c:forEach items="${item.getValue().getSubMenu()}" var="subMenu">
+									<a href="<c:url value='/${subMenu.getLink()}'/>">${subMenu.getName()}</a>
+							</c:forEach>
+						</div>
+					</c:if>
+				</li>
+			</c:forEach>
 		</ul>
 	</div>
 
@@ -51,11 +46,13 @@
 					class="fas fa-user"></i></a>
 				<div id="user-dropdown">
 					<security:authorize access="isAnonymous()">
-						<a href="/dang-nhap">Đăng nhập</a>
-						<a href="/dang-ky">Tạo tài khoản</a>
+						<input type="hidden" name="isLogin" id="isLogin" value=false>
+						<a href="<c:url value='/dang-nhap'/>">Đăng nhập</a>
+						<a href="<c:url value='/dang-ky'/>">Tạo tài khoản</a>
 					</security:authorize>
 
 					<security:authorize access="isAuthenticated()">
+						<input type="hidden" name="isLogin" id="isLogin" value=true>
 						<a href="#"><%=SecurityUtils.getPrincipal().getFullName()%></a>
 						<a href="<c:url value='/don-hang'/>" >Đơn hàng</a>
 						<a href="<c:url value='/thoat'/>" >Đăng xuất</a>
@@ -63,9 +60,9 @@
 				</div></li>
 
 			<li><a class="menuicon"
-				href="http://localhost/dongho_1/views/checkout.php"> <i
+				href="<c:url value='/chi-tiet-gio-hang'/>"> <i
 					id="view_cart" class="fas fa-shopping-bag"><sup
-						id="qty_cart_ajax" style="font-size: 19px; color: #FFF999"></sup></i>
+						id="qty_cart_ajax" style="font-size: 19px; color: #FFF999">${totalQuantityCart > 0 ? totalQuantityCart : '' }</sup></i>
 			</a></li>
 
 		</ul>
