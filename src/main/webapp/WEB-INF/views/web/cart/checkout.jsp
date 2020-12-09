@@ -66,11 +66,13 @@
 									
 								</tbody>
 							</table>	
-<!-- 						<input type="submit" value="Cập nhật" name="CapNhat"
-							style="padding: 3px; float: right; margin-right: 17px;"> -->
+					<c:if test="${totalQuantityCart == 0}">
+						<br><br><h3 style='color:#ff9999'>KHÔNG CÓ SẢN PHẨM NÀO TRONG GIỎ HÀNG!</h3>
+					</c:if>
 					</form>	
 				</div>
 				
+				<c:if test="${cart != null}">
     			<div class="tongcong">
 				    <form class="form-totalcart">
 				        <table class="total_cart" border=1>
@@ -87,22 +89,26 @@
 				            </tr>
 				            <tr>
 				                <td>Tổng tiền</td>
-				                <td><fmt:formatNumber type="number" groupingUsed="true" value="${totalPriceCart}"/> vnđ</td>
+				                <td style="background: yellow"><fmt:formatNumber type="number" groupingUsed="true" value="${totalPriceCart}"/> vnđ</td>
 				            </tr>
 				            <tr>
 				                <td colspan="2">Mã giảm giá    <i class="fas fa-tag"></i></td>
 				            </tr>
 				            <tr>
 				                <td colspan="2"><input type="text" placeholder="Nhập mã giảm giá" id="idcoupon"> &nbsp;
-				                <button class="">Áp dụng</button></td>		                
+				                <button id='applyVoucher'>Áp dụng</button></td>		                
 				            </tr>
       						<tr>
-				                <td colspan="2"><input type="button" class="bt-checkout" value="Thanh Toán">    <i class="fas fa-arrow-right"></i></td>
+				                <td colspan="2">
+				                	<a href="<c:url value='/tao-don-hang/'/>" style="text-decoration: none;" >
+				                	<input type="button" class="bt-checkout" value="Thanh Toán"> <i class="fas fa-arrow-right"></i>
+				                	</a>
+				                </td>
 				            </tr>
 				        </tbody></table>
 				    </form>
 				</div>
-    		
+    			</c:if>
     		</div>
 	
 		</div>
@@ -122,6 +128,11 @@
 			if(cartQuantity.is(":focus")) {
 				cartQuantity.focusout();
 			}
+		});
+		
+		$('#applyVoucher').click(function(e) {
+			e.preventDefault();
+			// hanlde voucher here...
 		});
 	</script>
 

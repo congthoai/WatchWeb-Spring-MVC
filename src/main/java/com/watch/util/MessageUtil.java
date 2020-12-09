@@ -7,6 +7,16 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MessageUtil {
+	
+	// Modify: design Singleton
+	private static MessageUtil instance;
+	private MessageUtil() {}
+	public static MessageUtil getInstance() {
+		if(instance == null) {
+			instance = new MessageUtil();
+		}
+		return instance;
+	}
 
 	public Map<String, String> getMessage(String message) {
 		Map<String, String> result = new HashMap<>();

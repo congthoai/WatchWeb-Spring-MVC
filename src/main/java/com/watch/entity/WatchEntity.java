@@ -9,14 +9,15 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "watch")
 public class WatchEntity extends BaseEntity {
 
-//	@OneToMany(mappedBy = "watch")
-//	private List<OrderDetailEntity> orderDetails = new ArrayList<>();
+	@OneToMany(mappedBy = "watch")
+	private List<OrderDetailEntity> orderDetails = new ArrayList<>();
 	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "type_id")
@@ -26,16 +27,16 @@ public class WatchEntity extends BaseEntity {
     @JoinColumn(name = "brand_id")
     private BrandEntity brand;
 	
-	@ManyToMany(mappedBy = "watchs")
-    private List<OrderEntity> orders = new ArrayList<>();
-	
-	public List<OrderEntity> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(List<OrderEntity> orders) {
-		this.orders = orders;
-	}
+//	@ManyToMany(mappedBy = "watchs")
+//    private List<OrderEntity> orders = new ArrayList<>();
+//	
+//	public List<OrderEntity> getOrders() {
+//		return orders;
+//	}
+//
+//	public void setOrders(List<OrderEntity> orders) {
+//		this.orders = orders;
+//	}
 
 	@Column(name = "name")
 	private String name;
@@ -186,5 +187,14 @@ public class WatchEntity extends BaseEntity {
 	public void setWaterproof(int waterproof) {
 		this.waterproof = waterproof;
 	}
+
+	public List<OrderDetailEntity> getOrderDetails() {
+		return orderDetails;
+	}
+
+	public void setOrderDetails(List<OrderDetailEntity> orderDetails) {
+		this.orderDetails = orderDetails;
+	}
+	
 	
 }

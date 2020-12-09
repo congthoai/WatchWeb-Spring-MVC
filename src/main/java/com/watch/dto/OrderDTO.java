@@ -1,5 +1,7 @@
 package com.watch.dto;
 
+import java.util.List;
+
 public class OrderDTO extends AbstractDTO<OrderDTO> {
 	
 	private String address;
@@ -8,7 +10,8 @@ public class OrderDTO extends AbstractDTO<OrderDTO> {
 	private String status;
 	private long total;
 	private long userId;
-	
+	private List<OrderDetailDTO> orderDetails;
+		
 	public String getAddress() {
 		return address;
 	}
@@ -45,5 +48,12 @@ public class OrderDTO extends AbstractDTO<OrderDTO> {
 	public void setUserId(long userId) {
 		this.userId = userId;
 	}
+	public List<OrderDetailDTO> getOrderDetails() {
+		return orderDetails;
+	}
+	public void setOrderDetails(List<OrderDetailDTO> orderDetails) {
+		this.orderDetails = orderDetails;
+	}
+	
 	
 }

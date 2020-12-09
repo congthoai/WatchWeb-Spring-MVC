@@ -21,9 +21,7 @@ import com.watch.util.MessageUtil;
 public class UserController {
 	
 	@Autowired
-	IUserService userService;
-	@Autowired
-	MessageUtil messageUtil;
+	private IUserService userService;
 
 	@RequestMapping(value="/quan-tri/nguoi-dung/danh-sach", method = RequestMethod.GET)
 	public ModelAndView showList(HttpServletRequest request, @RequestParam("page") int page, @RequestParam("limit") int limit) {
@@ -37,7 +35,7 @@ public class UserController {
 		model.setTotalPage((int) Math.ceil(model.getTotalItem() / limit));
 		
 		if(request.getParameter("message") != null) {
-			Map<String, String> message = messageUtil.getMessage(request.getParameter("message"));
+			Map<String, String> message = MessageUtil.getInstance().getMessage(request.getParameter("message"));
 			mav.addObject("message", message.get("message"));
 			mav.addObject("alert", message.get("alert"));
 		}

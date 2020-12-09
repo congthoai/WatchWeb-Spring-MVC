@@ -2,40 +2,60 @@ package com.watch.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "order_detail")
 public class OrderDetailEntity extends BaseEntity {
 
-//	@ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "order_id")
-//    private OrderEntity order;
-//	
-//	@ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "watch_id")
-//    private WatchEntity watch;
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id")
+    private OrderEntity order;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "watch_id")
+    private WatchEntity watch;
 
-	@Column(name = "qty")
-	private int qty;
+	@Column(name = "quantity")
+	private int quantity;
 
 	@Column(name = "amount")
-	private long amount;
+	private long totalPrice;
 
-	public int getQty() {
-		return qty;
+	
+	public int getQuantity() {
+		return quantity;
 	}
 
-	public void setQty(int qty) {
-		this.qty = qty;
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
-	public long getAmount() {
-		return amount;
+	public long getTotalPrice() {
+		return totalPrice;
 	}
 
-	public void setAmount(long amount) {
-		this.amount = amount;
+	public void setTotalPrice(long totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	public OrderEntity getOrder() {
+		return order;
+	}
+
+	public void setOrder(OrderEntity order) {
+		this.order = order;
+	}
+
+	public WatchEntity getWatch() {
+		return watch;
+	}
+
+	public void setWatch(WatchEntity watch) {
+		this.watch = watch;
 	}
 	
 	

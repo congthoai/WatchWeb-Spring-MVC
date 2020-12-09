@@ -22,9 +22,6 @@ public class TypeController {
 
 	@Autowired
 	private ITypeService typeService;
-	
-	@Autowired
-	private MessageUtil messageUtil;
 
 	@RequestMapping(value = "quan-tri/loai-dong-ho/danh-sach", method = RequestMethod.GET)
 	public ModelAndView showList(@RequestParam("page") int page, @RequestParam("limit") int limit, HttpServletRequest request) {
@@ -38,7 +35,7 @@ public class TypeController {
 		model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getLimit()));
 		
 		if (request.getParameter("message") != null) {
-			Map<String, String> message = messageUtil.getMessage(request.getParameter("message"));
+			Map<String, String> message = MessageUtil.getInstance().getMessage(request.getParameter("message"));
 			mav.addObject("message", message.get("message"));
 			mav.addObject("alert", message.get("alert"));
 		}
@@ -56,7 +53,7 @@ public class TypeController {
 		}
 		
 		if(request.getParameter("message") != null) {
-			Map<String, String> message = messageUtil.getMessage(request.getParameter("message"));
+			Map<String, String> message = MessageUtil.getInstance().getMessage(request.getParameter("message"));
 			mav.addObject("message", message.get("message"));
 			mav.addObject("alert", message.get("alert"));
 		}

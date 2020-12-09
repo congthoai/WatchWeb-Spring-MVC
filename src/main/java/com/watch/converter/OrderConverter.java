@@ -1,5 +1,6 @@
 package com.watch.converter;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.watch.dto.OrderDTO;
@@ -7,6 +8,8 @@ import com.watch.entity.OrderEntity;
 
 @Component
 public class OrderConverter {
+	@Autowired
+	OrderDetailConverter orderDetailConverter;
 	
 	public OrderDTO toDto(OrderEntity entity) {
 		OrderDTO result = new OrderDTO();
@@ -17,6 +20,8 @@ public class OrderConverter {
 		result.setPhone(entity.getPhone());
 		result.setStatus(entity.getStatus());
 		result.setTotal(entity.getTotal());
+		result.setUserId(entity.getUser().getId());
+		result.setOrderDetails(orderDetailConverter.toListDto(entity.getOrderDetails()));
 		return result;
 	}
 	

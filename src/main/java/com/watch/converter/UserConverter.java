@@ -20,6 +20,7 @@ public class UserConverter {
 	public UserDTO toDto(UserEntity entity) {
 		UserDTO result = new UserDTO();
 		List<RoleDTO> roles = new ArrayList<>();
+		result.setId(entity.getId());
 		result.setUserName(entity.getUserName());
 		result.setFullName(entity.getFullName());
 		result.setPassword(entity.getPassword());

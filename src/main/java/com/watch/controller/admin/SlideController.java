@@ -23,11 +23,9 @@ import com.watch.util.MessageUtil;
 public class SlideController {
 	
 	@Autowired
-	SlideService slideService;
+	private SlideService slideService;
 	@Autowired
-	MessageUtil messageUtil;
-	@Autowired
-	MediaFileUtil mediaUtil;
+	private MediaFileUtil mediaUtil;
 
 	@RequestMapping(value="quan-tri/slide/danh-sach", method = RequestMethod.GET)
 	public ModelAndView showList(@RequestParam(value="page", required = false) Integer page, 
@@ -42,7 +40,7 @@ public class SlideController {
 		Pageable pageable = new PageRequest(model.getPage() - 1, model.getLimit());
 		model.setListResult(slideService.findAll(pageable));
 		if(request.getParameter("message") != null) {
-			Map<String, String> message = messageUtil.getMessage(request.getParameter("message"));
+			Map<String, String> message = MessageUtil.getInstance().getMessage(request.getParameter("message"));
 			mav.addObject("message", message.get("message"));
 			mav.addObject("alert", message.get("alert"));
 		}
@@ -60,7 +58,7 @@ public class SlideController {
 		}
 		
 		if(request.getParameter("message") != null) {
-			Map<String, String> message = messageUtil.getMessage(request.getParameter("message"));
+			Map<String, String> message = MessageUtil.getInstance().getMessage(request.getParameter("message"));
 			mav.addObject("message", message.get("message"));
 			mav.addObject("alert", message.get("alert"));
 		}
@@ -76,11 +74,11 @@ public class SlideController {
 									@RequestParam("file") MultipartFile file) {
 		
 		ModelAndView mav = new ModelAndView("admin/slide/edit");
-		Map<String, String> message = messageUtil.getMessage("insert_success");
+		Map<String, String> message = MessageUtil.getInstance().getMessage("insert_success");
 		SlideDTO model = new SlideDTO();	
 		if(id != null) {
 			model = slideService.findById(id);
-			message = messageUtil.getMessage("update_success");
+			message = MessageUtil.getInstance().getMessage("update_success");
 		}
 		model.setName(name);
 		model.setSort(sort);
@@ -101,7 +99,7 @@ public class SlideController {
 			model = slideService.save(model);
 			mav.addObject("model", model);
 		} catch (Exception e) {
-			message = messageUtil.getMessage("error_system");
+			message = MessageUtil.getInstance().getMessage("error_system");
 		}
 		
 		mav.addObject("message", message.get("message"));

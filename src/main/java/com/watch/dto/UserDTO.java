@@ -3,7 +3,7 @@ package com.watch.dto;
 import java.util.List;
 
 public class UserDTO extends AbstractDTO<UserDTO> {
-	
+	private Long id;
 	private String userName;
 	private String password;
 	private String fullName;
@@ -12,6 +12,13 @@ public class UserDTO extends AbstractDTO<UserDTO> {
 	private String phone;
 	private List<RoleDTO> roles;
 	
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getUserName() {
 		return userName;
 	}

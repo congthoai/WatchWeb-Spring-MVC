@@ -3,6 +3,7 @@ package com.watch.dto;
 public class CartDTO {
 	
 	private WatchDTO watch;
+	private Long watchId;
 	private Long quantity;
 	private Long totalPrice;
 	
@@ -35,6 +36,12 @@ public class CartDTO {
 	public void setTotalPrice(Long totalPrice) {
 		this.totalPrice = totalPrice;
 	}
-	
-	
+
+	public Long getWatchId() {
+		return watchId;
+	}
+
+	public void setWatchId(Long watchId) {
+		this.watchId = watchId;
+	}
 }

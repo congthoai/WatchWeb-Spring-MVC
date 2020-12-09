@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.watch.constant.SystemConstant;
+import com.watch.converter.UserConverter;
 import com.watch.dto.MyUser;
 import com.watch.entity.RoleEntity;
 import com.watch.entity.UserEntity;
@@ -22,6 +23,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 	
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private UserConverter userConverter;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -37,6 +40,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		MyUser myUser = new MyUser(userEntity.getUserName(), userEntity.getPassword(), 
 							true, true, true, true, authorities);
 		myUser.setFullName(userEntity.getFullName());
+		myUser.setUser(userConverter.toDto(userEntity));
 		return myUser;
 	}
 

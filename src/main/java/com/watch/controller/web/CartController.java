@@ -30,9 +30,7 @@ public class CartController {
 			cart = new HashMap<Long, CartDTO>();
 		}
 		cart = cartService.addCart(watchId, cart);
-		session.setAttribute("cart", cart);
-		session.setAttribute("totalPriceCart", cartService.totalPrice(cart));
-		session.setAttribute("totalQuantityCart", cartService.totalQuantity(cart));
+		cartService.setSessionCart(session, cart);
 		return cartService.totalQuantity(cart);
 	}
 	
@@ -50,23 +48,19 @@ public class CartController {
 			cart = new HashMap<Long, CartDTO>();
 		}
 		cart = cartService.editCart(id, quantity, cart);
-		session.setAttribute("cart", cart);
-		session.setAttribute("totalPriceCart", cartService.totalPrice(cart));
-		session.setAttribute("totalQuantityCart", cartService.totalQuantity(cart));
+		cartService.setSessionCart(session, cart);
 		return "redirect:" + request.getHeader("Referer");
 	}
 
 	@SuppressWarnings("unchecked")
-	@RequestMapping(value="xoa-gio-hang/{id}", method = RequestMethod.GET)
-	public String deleteCart(HttpSession session, @PathVariable Long id, HttpServletRequest request) {
+	@RequestMapping(value={"xoa-gio-hang", "xoa-gio-hang/{id}"}, method = RequestMethod.GET)
+	public String deleteCart(HttpSession session, @PathVariable(required = false) Long id, HttpServletRequest request) {
 		HashMap<Long, CartDTO> cart = (HashMap<Long, CartDTO>) session.getAttribute("cart");
-		if(cart == null) {
+		if(cart == null || id == null) {
 			cart = new HashMap<Long, CartDTO>();
 		}
 		cart = cartService.deleteCart(id, cart);
-		session.setAttribute("cart", cart);
-		session.setAttribute("totalPriceCart", cartService.totalPrice(cart));
-		session.setAttribute("totalQuantityCart", cartService.totalQuantity(cart));
+		cartService.setSessionCart(session, cart);
 		return "redirect:" + request.getHeader("Referer");
 	}
 }

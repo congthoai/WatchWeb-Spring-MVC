@@ -22,10 +22,7 @@ import com.watch.util.MessageUtil;
 public class BrandController {
 	
 	@Autowired
-	IBrandService brandService;
-	
-	@Autowired
-	MessageUtil messageUtil;
+	private IBrandService brandService;
 	
 	@RequestMapping(value="/quan-tri/thuong-hieu/danh-sach", method=RequestMethod.GET)
 	public ModelAndView showList(@RequestParam("page") int page, @RequestParam("limit") int limit, HttpServletRequest request) {
@@ -38,7 +35,7 @@ public class BrandController {
 		model.setTotalItem(brandService.getTotalItem());
 		model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getLimit()));
 		if(request.getParameter("message") != null) {
-			Map<String, String> message = messageUtil.getMessage(request.getParameter("message"));
+			Map<String, String> message = MessageUtil.getInstance().getMessage(request.getParameter("message"));
 			mav.addObject("message", message.get("message"));
 			mav.addObject("alert", message.get("alert"));
 		}
@@ -57,7 +54,7 @@ public class BrandController {
 		}
 		
 		if(request.getParameter("message") != null) {
-			Map<String, String> message = messageUtil.getMessage(request.getParameter("message"));
+			Map<String, String> message = MessageUtil.getInstance().getMessage(request.getParameter("message"));
 			mav.addObject("message", message.get("message"));
 			mav.addObject("alert", message.get("alert"));
 		}

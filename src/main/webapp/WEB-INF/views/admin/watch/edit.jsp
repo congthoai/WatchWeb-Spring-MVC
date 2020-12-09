@@ -46,6 +46,15 @@
 								</div>
 							</div>
 							<div class="form-group">
+								  <label for="typeId" class="col-sm-3 control-label no-padding-right">Giới tính</label>
+								  <div class="col-sm-9">
+								  	 <form:select path="gender" id="gender">
+								  	 	<form:option value="" label="-- Chọn loại --"/>
+								  	 	<form:options items="${genders}"/>
+								  	 </form:select>
+								  </div>
+							</div>
+							<div class="form-group">
 								  <label for="typeId" class="col-sm-3 control-label no-padding-right">Loại đồng hồ</label>
 								  <div class="col-sm-9">
 								  	 <form:select path="typeId" id="typeId">

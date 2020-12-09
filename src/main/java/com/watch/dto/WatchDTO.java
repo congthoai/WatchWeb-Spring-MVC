@@ -1,5 +1,7 @@
 package com.watch.dto;
 
+import java.util.List;
+
 public class WatchDTO extends AbstractDTO<WatchDTO> {
 	
 	private int buyed;;
@@ -16,6 +18,7 @@ public class WatchDTO extends AbstractDTO<WatchDTO> {
 	private int waterproof;
 	private Long brandId;
 	private Long typeId;
+	private List<OrderDetailDTO> orderDetails;
 	
 	public int getBuyed() {
 		return buyed;
@@ -102,4 +105,11 @@ public class WatchDTO extends AbstractDTO<WatchDTO> {
 	public void setTypeId(Long typeId) {
 		this.typeId = typeId;
 	}
+	public List<OrderDetailDTO> getOrderDetails() {
+		return orderDetails;
+	}
+	public void setOrderDetails(List<OrderDetailDTO> orderDetails) {
+		this.orderDetails = orderDetails;
+	}
+	
 }

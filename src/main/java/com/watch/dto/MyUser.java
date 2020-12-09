@@ -14,6 +14,7 @@ public class MyUser extends User {
 	}
 	
 	private String fullName;
+	private UserDTO user;
 	
 	public String getFullName() {
 		return fullName;
@@ -21,5 +22,13 @@ public class MyUser extends User {
 
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
+	}
+
+	public UserDTO getUser() {
+		return user;
+	}
+
+	public void setUser(UserDTO user) {
+		this.user = user;
 	}
 }

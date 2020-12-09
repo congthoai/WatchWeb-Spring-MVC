@@ -7,9 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,13 +19,13 @@ public class OrderEntity extends BaseEntity{
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
-//	@OneToMany(mappedBy = "order")
-//	private List<OrderDetailEntity> orderDetails = new ArrayList<>();
+	@OneToMany(mappedBy = "order")
+	private List<OrderDetailEntity> orderDetails = new ArrayList<>();
 	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "order_detail", joinColumns = @JoinColumn(name = "orderid"), 
-								  inverseJoinColumns = @JoinColumn(name = "watchid"))
-	private List<WatchEntity> watchs = new ArrayList<>();	
+//	@ManyToMany(fetch = FetchType.LAZY)
+//	@JoinTable(name = "order_detail", joinColumns = @JoinColumn(name = "orderid"), 
+//								  inverseJoinColumns = @JoinColumn(name = "watchid"))
+//	private List<WatchEntity> watchs = new ArrayList<>();	
 
 	@Column(name = "total")
 	private long total;
@@ -102,13 +101,15 @@ public class OrderEntity extends BaseEntity{
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	
-	public List<WatchEntity> getWatchs() {
-		return watchs;
+
+	public List<OrderDetailEntity> getOrderDetails() {
+		return orderDetails;
 	}
 
-	public void setWatchs(List<WatchEntity> watchs) {
-		this.watchs = watchs;
+	public void setOrderDetails(List<OrderDetailEntity> orderDetails) {
+		this.orderDetails = orderDetails;
 	}
+	
+
 	
 }

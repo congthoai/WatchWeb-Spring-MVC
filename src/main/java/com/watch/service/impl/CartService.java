@@ -3,9 +3,13 @@ package com.watch.service.impl;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.watch.dto.CartDTO;
 import com.watch.dto.WatchDTO;
 import com.watch.service.ICartService;
@@ -27,10 +31,10 @@ public class CartService implements ICartService {
 			itemCart.setTotalPrice((watch.getPrice()-watch.getDiscount()) * itemCart.getQuantity());
 		} else {
 			itemCart.setWatch(watch);
+			itemCart.setWatchId(watchId);
 			itemCart.setQuantity(1L);
 			itemCart.setTotalPrice(watch.getPrice()-watch.getDiscount());
 		}
-		
 		cart.put(watchId, itemCart);
 		return cart;
 	}
@@ -80,5 +84,24 @@ public class CartService implements ICartService {
 		}
 		return totalPrice;
 	}
-	
+
+	@Override
+	public String toJson(HashMap<Long, CartDTO> cart) {
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			String jsonString = mapper.writeValueAsString(cart);
+			return jsonString;
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
+
+	@Override
+	public void setSessionCart(HttpSession session, HashMap<Long, CartDTO> cart) {
+		session.setAttribute("cart", cart);
+		session.setAttribute("totalPriceCart", totalPrice(cart));
+		session.setAttribute("totalQuantityCart", totalQuantity(cart));
+		session.setAttribute("cartToJson", toJson(cart));
+	}
 }

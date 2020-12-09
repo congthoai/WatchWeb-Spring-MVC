@@ -1,6 +1,6 @@
 package com.watch.controller.admin;
 
-import java.io.File;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,15 +27,13 @@ import com.watch.util.MessageUtil;
 public class WatchController {
 	
 	@Autowired
-	IWatchService watchService;
+	private IWatchService watchService;
 	@Autowired
-	MessageUtil messageUtil;
+	private IBrandService brandService;
 	@Autowired
-	IBrandService brandService;
+	private ITypeService typeService;
 	@Autowired
-	ITypeService typeService;
-	@Autowired
-	MediaFileUtil mediaUtil;
+	private MediaFileUtil mediaUtil;
 	
 	@RequestMapping(value = "/quan-tri/dong-ho/danh-sach", method = RequestMethod.GET)
 	public ModelAndView showList(HttpServletRequest request, @RequestParam("page") int page, @RequestParam("limit") int limit) {
@@ -50,7 +48,7 @@ public class WatchController {
 		mav.addObject("model", model);
 		
 		if(request.getParameter("message") != null) {
-			Map<String, String> message = messageUtil.getMessage(request.getParameter("message"));
+			Map<String, String> message = MessageUtil.getInstance().getMessage(request.getParameter("message"));
 			mav.addObject("message", message.get("message"));
 			mav.addObject("alert", message.get("alert"));
 		}
@@ -67,14 +65,18 @@ public class WatchController {
 		}
 		
 		if(request.getParameter("message") != null) {
-			Map<String, String> message = messageUtil.getMessage(request.getParameter("message"));
+			Map<String, String> message = MessageUtil.getInstance().getMessage(request.getParameter("message"));
 			mav.addObject("message", message.get("message"));
-			mav.addObject("alert", message.get("alert"));	
+			mav.addObject("alert", message.get("alert"));
 		}
 		
 		mav.addObject("model", model);
 		mav.addObject("brands", brandService.findAllMapIdName());
 		mav.addObject("types", typeService.findAllMapIdName());
+		mav.addObject("genders", new HashMap<String, String>() {{
+		    put("Nam", "Đồng hồ nam");
+		    put("Nữ", "Đồng hồ nữ");
+		}});
 		return mav;
 	}
 	
