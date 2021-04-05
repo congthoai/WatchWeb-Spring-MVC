@@ -145,7 +145,7 @@
 		 function saveMedia(dataFile) {
 	         console.log("form data " + dataFile);
 	         $.ajax({
-	             url : "http://localhost:8080/watch-mvc/quan-tri/dong-ho/chinh-sua",
+	             url : '${editwatchURL}',
 	             data : dataFile,
 	             processData : false,
 	             contentType : false,

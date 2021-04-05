@@ -8,7 +8,7 @@ public class WatchDTO extends AbstractDTO<WatchDTO> {
 	private Long discount;
 	private String gender;
 	private int stock;
-	private int material;
+	private String material;
 	private String name;
 	private Long price;
 	private int size;
@@ -44,10 +44,10 @@ public class WatchDTO extends AbstractDTO<WatchDTO> {
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
-	public int getMaterial() {
+	public String getMaterial() {
 		return material;
 	}
-	public void setMaterial(int material) {
+	public void setMaterial(String material) {
 		this.material = material;
 	}
 	public String getName() {

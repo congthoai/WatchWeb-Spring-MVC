@@ -69,7 +69,7 @@ public class WatchEntity extends BaseEntity {
 	private int size;
 	
 	@Column(name = "material")
-	private int material;
+	private String material;
 	
 	@Column(name = "waterproof")
 	private int waterproof;
@@ -172,11 +172,11 @@ public class WatchEntity extends BaseEntity {
 		this.size = size;
 	}
 
-	public int getMaterial() {
+	public String getMaterial() {
 		return material;
 	}
 
-	public void setMaterial(int material) {
+	public void setMaterial(String material) {
 		this.material = material;
 	}
 
